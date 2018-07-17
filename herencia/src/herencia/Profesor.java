@@ -36,5 +36,10 @@ public class Profesor extends Persona {
     public void setMateria(String materia) {
         this.materia = materia;
     }
+
+    @Override
+    public String toString() {
+        return  materia ;
+    }
     
 }

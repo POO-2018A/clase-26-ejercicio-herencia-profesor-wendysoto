@@ -23,6 +23,7 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
     DefaultTableModel tblModelMaterias;
     
     List<Materia> listaMaterias=new ArrayList<Materia> ();
+    
     DefaultComboBoxModel listaMateriasModel =new DefaultComboBoxModel(listaMaterias.toArray());
     ///////////////////
     String [][] estudiantes;
@@ -39,9 +40,11 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
     List<Profesor> listaProfesor=new ArrayList<Profesor>();
     
     
+    
     ///////////////////
     String [][] matricula;
     DefaultTableModel tblModelMatricula;
+    
     
     
     
@@ -54,8 +57,9 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
     public SistemaEstudiantes() {
         initComponents();
         
+       
          materias = new String[][]{
-            
+             
         };
         
        String  titulosColumnasMaterias []=new String []{
@@ -94,12 +98,11 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
     tblListMateriaProfesor.setModel(tblModelProfesores);
     
 //a la caja combo de materiaprofesor para elegir de profesor  le mando la lista de estudiantes
-        cmbMateriaProfesor.setModel(listaMateriasModel);
-      cmbMaterias.setModel(listaMateriasModel);
         
-
-
-//a la caja combo de estudiantes dde la matricula  le mando la lista de estudiantes
+  
+        cmbMateriaProfesor.setModel(listaMateriasModel);
+     
+       //a la caja combo de estudiantes dde la matricula  le mando la lista de estudiantes
         cmbEstudiantes.setModel(listaEstudiantesModel);
     }
 
@@ -153,7 +156,6 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
         cmbEstudiantes = new javax.swing.JComboBox<>();
         cmbMaterias = new javax.swing.JComboBox<>();
         btnMatricular = new javax.swing.JButton();
-        btnMostrarMatriculados = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblListaMatriculados = new javax.swing.JTable();
 
@@ -454,7 +456,12 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
             }
         });
 
-        cmbMaterias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbMaterias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:" }));
+        cmbMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMateriasActionPerformed(evt);
+            }
+        });
 
         btnMatricular.setText("Matricular");
         btnMatricular.addActionListener(new java.awt.event.ActionListener() {
@@ -462,8 +469,6 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
                 btnMatricularActionPerformed(evt);
             }
         });
-
-        btnMostrarMatriculados.setText("Mostrar Matriculados");
 
         tblListaMatriculados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -491,19 +496,18 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
                         .addGap(162, 162, 162)
                         .addGroup(PanelMatriculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addGroup(PanelMatriculaLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(btnMatricular)))
-                        .addGap(30, 30, 30)
+                            .addComponent(jLabel11))
+                        .addGap(56, 56, 56)
                         .addGroup(PanelMatriculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnMostrarMatriculados)
-                            .addComponent(cmbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cmbEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PanelMatriculaLayout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                        .addGap(89, 89, 89)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelMatriculaLayout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(btnMatricular)))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         PanelMatriculaLayout.setVerticalGroup(
             PanelMatriculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,20 +519,14 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(cmbEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PanelMatriculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelMatriculaLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMatriculaLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(cmbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
-                .addGroup(PanelMatriculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMatricular)
-                    .addComponent(btnMostrarMatriculados))
-                .addGap(27, 27, 27)
+                .addGroup(PanelMatriculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cmbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(38, 38, 38)
+                .addComponent(btnMatricular)
+                .addGap(36, 36, 36)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
+                .addGap(87, 87, 87))
         );
 
         jTabbedPane1.addTab("MATRICULA", PanelMatricula);
@@ -563,15 +561,31 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
 
     private void btnAgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMateriaActionPerformed
         // TODO add your handling code here:
-        
-        
+               
         
         Materia nuevaMateria = new Materia(txtNombreMateria.getText());
+        
+        boolean materiaExistente= false;
+         for(Materia m: listaMaterias){
+             if(m.getNombre().equals(nuevaMateria.getNombre())){
+                 materiaExistente=true;
+                 break;
+             }
+             
+         }
+         
+           
+         if(!materiaExistente){
+           listaMaterias.add(nuevaMateria);
         tblModelMaterias.addRow(new String[]{nuevaMateria.getNombre()});
 
         listaMateriasModel.addElement(nuevaMateria.getNombre());
-        
-        
+ 
+         }
+         else{
+            JOptionPane.showMessageDialog(rootPane, "LA MATERIA YA EXISTE");
+         }
+       
         txtNombreMateria.setText("");
          System.out.println(tblModelMaterias);
          
@@ -587,14 +601,39 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
         String apellido = txtApellidoProfesor.getText();
         String facultad=txtFacultad.getText();
         int edad = Integer.parseInt(txtEdadProfesor.getText());
-        String comboMateria = cmbMateriaProfesor.getSelectedItem().toString();
-
+        String comboMateria = cmbMateriaProfesor.getSelectedItem().toString();; 
+        
+        
         Profesor nuevoProfesor = new Profesor(nombre, apellido, edad,facultad,comboMateria);
-        tblModelProfesores.addRow(new String[]{nuevoProfesor.getNombre(), nuevoProfesor.getApellido(), "" + nuevoProfesor.getEdad(),nuevoProfesor.getFacultad(),nuevoProfesor.getMateria()});
+         cmbMateriaProfesor.addItem("");
+        boolean materia_con_profesor=false;
+        for(Profesor itemSel:listaProfesor){
+            if(itemSel.getMateria().equals(nuevoProfesor.getMateria())){
+              materia_con_profesor=true; 
+             
+            cmbMateriaProfesor.removeItem(cmbMateriaProfesor.getSelectedItem().toString());
+             break;
+            }
+        }
+        
+         if(materia_con_profesor==false){
+             
+             listaProfesor.add(nuevoProfesor);
+         /////////////// las materias a matricular /////////  
+   
+        cmbMaterias.addItem(cmbMateriaProfesor.getSelectedItem().toString());
+        
+        tblModelProfesores.addRow(new String[]{nuevoProfesor.getNombre(), nuevoProfesor.getApellido(), "" + nuevoProfesor.getEdad(),nuevoProfesor.getFacultad(),nuevoProfesor.getMateria()});  
         txtNombreProfesor.setText("");
         txtApellidoProfesor.setText("");
         txtEdadProfesor.setText("");
         txtFacultad.setText("");
+         }
+        
+         
+        
+        
+        
         
     }//GEN-LAST:event_btnOKActionPerformed
 
@@ -611,6 +650,9 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
         
         listaEstudiantesModel.addElement(newEstudiante.getNombre()+" "+newEstudiante.getApellido());
         
+        txtNombreEstudiante.setText("");
+        txtApellidoEstudiante.setText("");
+        txtEdadEstudiante.setText("");
         
         
         
@@ -618,18 +660,61 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
 
     private void cmbEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEstudiantesActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_cmbEstudiantesActionPerformed
 
     private void btnMatricularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatricularActionPerformed
         // TODO add your handling code here:
         
+         /*Estudiante estudianteSel = (Estudiante)cmbEstudiantes.getSelectedItem();
+        Materia materiaSel = (Materia)cmbMaterias.getSelectedItem();
+        
+        System.out.println("Estudiante seleccionado " + estudianteSel.getNombre());
+        System.out.println("Materia seleccionado " + materiaSel.getNombre());
+        
+        boolean ya_se_matriculo = false;
+        ArrayList<Materia> materiasXEstudiante = estudianteSel.getMaterias();
+        if(materiasXEstudiante.size() > 1){
+            for(Materia m : materiasXEstudiante) {
+                if(materiaSel.equals(m)){
+                    ya_se_matriculo = true;
+                    break;
+                }
+            }
+        }
+        
+        if(ya_se_matriculo==false) {
+            tblModelMatricula.addRow(new String[]{estudianteSel.getNombre(),materiaSel.getNombre()});
+            materiasXEstudiante.add(materiaSel);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Estudiante ya esta matriculado en la materia");
+        }*/
+         
+         
+        
         String ComboEstudiantes = cmbEstudiantes.getSelectedItem().toString();
         String ComboMaterias = cmbMaterias.getSelectedItem().toString();
 
         //Matriculacion newMatriculacion = new Matriculacion(ComboEstudiantes,ComboMaterias);
+      
+            
+        
         tblModelMatricula.addRow(new String[]{ComboEstudiantes, ComboMaterias});
         
+        
+        
     }//GEN-LAST:event_btnMatricularActionPerformed
+
+    private void cmbMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMateriasActionPerformed
+        // TODO add your handling code here:
+        
+      
+      
+        //
+        
+        
+    }//GEN-LAST:event_cmbMateriasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -673,7 +758,6 @@ public class SistemaEstudiantes extends javax.swing.JFrame {
     private javax.swing.JPanel PanelProfesor;
     private javax.swing.JButton btnAgregarMateria;
     private javax.swing.JButton btnMatricular;
-    private javax.swing.JButton btnMostrarMatriculados;
     private javax.swing.JButton btnOK;
     private javax.swing.JButton btnRegistrarEstudiante;
     private javax.swing.JComboBox<String> cmbEstudiantes;
